@@ -2,9 +2,6 @@
 
 A Python-based Snake game AI that learns to play using Deep Q-Learning (DQN) with PyTorch and Pygame.
 
-## Demo
-
-
 
 
 ## What It Does
