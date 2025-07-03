@@ -4,7 +4,8 @@ A Python-based Snake game AI that learns to play using Deep Q-Learning (DQN) wit
 
 ## Demo
 
-*(Add a GIF or screenshot here later to show your game in action)*
+
+
 
 ## What It Does
 
