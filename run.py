@@ -1,5 +1,6 @@
+import argparse
 from agent import Agent
-from snake_game import SnakeGameAI  # ✅ Make sure this is imported!
+from snake_game import SnakeGame
 import matplotlib.pyplot as plt
 
 plt.ion()
@@ -28,7 +29,7 @@ def train():
     total_score = 0
     record = 0
     agent = Agent()
-    game = SnakeGameAI()
+    game = SnakeGame(ai_player=True)
 
     while True:
         state_old = agent.get_state(game)
@@ -63,5 +64,28 @@ def train():
 
             plot(scores, mean_scores)
 
+def test():
+    game = SnakeGame(ai_player=True)
+    agent = Agent()
+    agent.epsilon = 0  # No random moves in testing
+
+    while True:
+        state_old = agent.get_state(game)
+        final_move = agent.get_action(state_old)
+        _, game_over, score = game.play_step(final_move)
+
+        if game_over:
+            break
+
+    print('Final Score:', score)
+
 if __name__ == '__main__':
-    train()
+    parser = argparse.ArgumentParser(description='Snake Game AI')
+    parser.add_argument('--mode', type=str, default='train', choices=['train', 'test'],
+                        help='Choose the mode: train or test')
+    args = parser.parse_args()
+
+    if args.mode == 'train':
+        train()
+    elif args.mode == 'test':
+        test()
